@@ -117,6 +117,19 @@
 #define PROBE_BIT       7  // MEGA2560 Analog Pin 15
 #define PROBE_MASK      (1<<PROBE_BIT)
 
+// Define the LCD connection pins.
+#define LCD_ENABLE		//Comment to disable the use of LCD
+#define LCD_DDR         DDRL
+#define LCD_PIN         PINL
+#define LCD_PORT        PORTL
+#define LCD_D3          0  // MEGA2560 Digital Pin 49
+#define LCD_D2          1  // MEGA2560 Digital Pin 48
+#define LCD_D1          2  // MEGA2560 Digital Pin 47
+#define LCD_D0          3  // MEGA2560 Digital Pin 46
+#define LCD_EN          4  // MEGA2560 Digital Pin 45
+#define LCD_RS          5  // MEGA2560 Digital Pin 44
+#define LCD_MASK ((1<<LCD_D7)|(1<<LCD_D6)|(1<<LCD_D5)|(1<<LCD_D4)|(1<<LCD_RESET)|(1<<LCD_RS))
+
 // Start of PWM & Stepper Enabled Spindle
 #ifdef VARIABLE_SPINDLE
   // Advanced Configuration Below You should not need to touch these variables

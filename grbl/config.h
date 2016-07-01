@@ -391,6 +391,9 @@
 // NOTE: This option has no effect if SOFTWARE_DEBOUNCE is enabled.
 // #define HARD_LIMIT_FORCE_STATE_CHECK // Default disabled. Uncomment to enable.
 
+//Defines the number of rows and columns of the LCD used.
+#define LCD_COL_COUNT 16
+#define LCD_ROW_COUNT 2
 
 // ---------------------------------------------------------------------------------------
 // COMPILE-TIME ERROR CHECKING OF DEFINE VALUES:
