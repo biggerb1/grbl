@@ -392,6 +392,7 @@
 // #define HARD_LIMIT_FORCE_STATE_CHECK // Default disabled. Uncomment to enable.
 
 //Defines the number of rows and columns of the LCD used.
+#define LCD_ENABLE		//Comment to disable the use of LCD
 #define LCD_COL_COUNT 16
 #define LCD_ROW_COUNT 2
 

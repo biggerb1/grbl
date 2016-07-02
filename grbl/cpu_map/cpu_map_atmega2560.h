@@ -118,7 +118,6 @@
 #define PROBE_MASK      (1<<PROBE_BIT)
 
 // Define the LCD connection pins.
-#define LCD_ENABLE		//Comment to disable the use of LCD
 #define LCD_DDR         DDRL
 #define LCD_PIN         PINL
 #define LCD_PORT        PORTL

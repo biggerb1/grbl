@@ -24,8 +24,6 @@ void lcd_send(uint8_t value, uint8_t mode) {
     LCD_PORT = LCD_PORT & ~(1 << LCD_RS);
   }
 
-//  LCD_PORT = LCD_PORT & ~(1 << LCD_RW); //TO BE REMOVED
-
   lcd_write_nibble(value >> 4);
   lcd_write_nibble(value);
 }
@@ -82,6 +80,7 @@ void lcd_off(void) {
 void lcd_clear(void) {
   lcd_command(LCD_CLEARDISPLAY);
   _delay_ms(2);
+  lcd_return_home();
 }
 
 void lcd_return_home(void) {
@@ -154,22 +153,8 @@ void lcd_set_cursor(uint8_t col, uint8_t row) {
   lcd_command(LCD_SETDDRAMADDR | (col + offsets[row]));
 }
 
-void lcd_puts(char *string) {
+void lcd_print(char *string) {
   for (char *it = string; *it; it++) {
     lcd_write(*it);
   }
 }
-
-//Printf function is not used because it requires the use of the stdarg.h header file,
-//Though this file is a default file and can be imported, it would only cause more space
-//problems in already cramped code.
-
-//void lcd_printf(char *format, ...) {
-//  va_list args;
-//
-//  va_start(args, format);
-//  vsnprintf(lcd_buffer, LCD_COL_COUNT + 1, format, args);
-//  va_end(args);
-//
-//  lcd_puts(lcd_buffer);
-//}
