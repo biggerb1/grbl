@@ -7,3 +7,6 @@
 README.md
 grbl.mk
 grbl.workspace
+.codelite/refactoring.db
+.codelite/.tern-port
+.codelite/refactoring.db

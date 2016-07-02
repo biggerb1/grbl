@@ -55,4 +55,10 @@ void printFloat_SettingValue(float n);
 // Debug tool to print free memory in bytes at the called point. Not used otherwise.
 void printFreeMemory();
 
+// Prints a given string from program memory to the LCD starting from the given column and rows
+void printPgmStringLCD(const char *string, uint8_t col, uint8_t row);
+
+// Prints a given 8bit integer to the LCD at the given column and row
+void print_uint8_LCD(uint8_t val, uint8_t col, uint8_t row);
+
 #endif

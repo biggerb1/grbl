@@ -41,8 +41,10 @@ void report_status_message(uint8_t status_code)
 {
   if (status_code == 0) { // STATUS_OK
     printPgmString(PSTR("ok\r\n"));
+	//lcd_clear(); printPgmStringLCD(PSTR("Normal operation", 0, 0));
   } else {
     printPgmString(PSTR("error: "));
+	lcd_clear(); printPgmStringLCD(PSTR("ERROR WARNING!", 0, 0)); printPgmStringLCD(PSTR("code:"), 0, 1); print_uint8_LCD(status_code, 5, 1);
     #ifdef REPORT_GUI_MODE
       print_uint8_base10(status_code);
     #else
@@ -94,6 +96,7 @@ void report_status_message(uint8_t status_code)
 void report_alarm_message(int8_t alarm_code)
 {
   printPgmString(PSTR("ALARM: "));
+  lcd_clear(); printPgmStringLCD(PSTR("ALARM WARNING!", 0, 0)); printPgmStringLCD(PSTR("code:"), 0, 1); print_uint8_LCD(alarm_code, 5, 1);
   #ifdef REPORT_GUI_MODE
     print_uint8_base10(alarm_code);
   #else
@@ -125,21 +128,29 @@ void report_feedback_message(uint8_t message_code)
   printPgmString(PSTR("["));
   switch(message_code) {
     case MESSAGE_CRITICAL_EVENT:
-    printPgmString(PSTR("Reset to continue")); break;
+    printPgmString(PSTR("Reset to continue"));
+	lcd_clear(); printPgmStringLCD(PSTR("Press reset to", 0, 0)); printPgmStringLCD(PSTR("continue"), 0, 1);  break;
     case MESSAGE_ALARM_LOCK:
-    printPgmString(PSTR("'$H'|'$X' to unlock")); break;
+    printPgmString(PSTR("'$H'|'$X' to unlock"));
+	lcd_clear(); printPgmStringLCD(PSTR("Homing error!", 0, 0)); printPgmStringLCD(PSTR("home now please!"), 0, 1); break;
     case MESSAGE_ALARM_UNLOCK:
-    printPgmString(PSTR("Caution: Unlocked")); break;
+    printPgmString(PSTR("Caution: Unlocked")); 
+	lcd_clear(); printPgmStringLCD(PSTR("CAUTION:", 0, 0)); printPgmStringLCD(PSTR("unlocked!"), 0, 1); break;
     case MESSAGE_ENABLED:
-    printPgmString(PSTR("Enabled")); break;
+    printPgmString(PSTR("Enabled")); 
+	lcd_clear(); printPgmStringLCD(PSTR("Enabled!", 0, 0)); break;
     case MESSAGE_DISABLED:
-    printPgmString(PSTR("Disabled")); break; 
+    printPgmString(PSTR("Disabled"));
+	lcd_clear(); printPgmStringLCD(PSTR("Disabled!", 0, 0)); break;
     case MESSAGE_SAFETY_DOOR_AJAR:
-    printPgmString(PSTR("Check Door")); break;
+    printPgmString(PSTR("Check Door"));
+	lcd_clear(); printPgmStringLCD(PSTR("Check door!", 0, 0)); break;
     case MESSAGE_PROGRAM_END:
-    printPgmString(PSTR("Pgm End")); break;
+    printPgmString(PSTR("Pgm End")); 
+	lcd_clear(); printPgmStringLCD(PSTR("Program end", 0, 0)); break;
     case MESSAGE_RESTORE_DEFAULTS:
-    printPgmString(PSTR("Restoring defaults")); break;
+    printPgmString(PSTR("Restoring defaults"));
+	lcd_clear(); printPgmStringLCD(PSTR("Restoring", 0, 0)); printPgmStringLCD(PSTR("defaults"), 0, 1); break;
   }
   printPgmString(PSTR("]\r\n"));
 }
@@ -149,6 +160,7 @@ void report_feedback_message(uint8_t message_code)
 void report_init_message()
 {
   printPgmString(PSTR("\r\nGrbl " GRBL_VERSION " ['$' for help]\r\n"));
+  lcd_clear(); printPgmStringLCD(PSTR("Welcome to GRBL!", 0, 0)); printPgmStringLCD(PSTR("ver:"), 0, 1); printPgmStringLCD(PSTR(GRBL_VERSION), 4, 1);
 }
 
 // Grbl help message
@@ -431,9 +443,11 @@ void report_realtime_status()
  
   // Report current machine state
   switch (sys.state) {
-    case STATE_IDLE: printPgmString(PSTR("<Idle")); break;
+    case STATE_IDLE: printPgmString(PSTR("<Idle"));
+	lcd_clear(); printPgmStringLCD(PSTR("(Nominal) Mode:", 0, 0)); printPgmStringLCD(PSTR("IDLE"), 6, 1); break;
     case STATE_MOTION_CANCEL: // Report run state.
-    case STATE_CYCLE: printPgmString(PSTR("<Run")); break;
+    case STATE_CYCLE: printPgmString(PSTR("<Run")); 
+	lcd_clear(); printPgmStringLCD(PSTR("(Nominal) Mode:", 0, 0)); printPgmStringLCD(PSTR("RUNNING"), 4, 1); break;
     case STATE_HOLD: printPgmString(PSTR("<Hold")); break;
     case STATE_HOMING: printPgmString(PSTR("<Home")); break;
     case STATE_ALARM: printPgmString(PSTR("<Alarm")); break;

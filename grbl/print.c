@@ -191,6 +191,25 @@ void printFloat_RateValue(float n) {
 
 void printFloat_SettingValue(float n) { printFloat(n,N_DECIMAL_SETTINGVALUE); }
 
+void printPgmStringLCD(const char *string, uint8_t col, uint8_t row){
+	//Note: There is probably a better way to actually disable the use of the LCD, but I'm too bad at
+	//programming and too lazy to try and figure it out, this should work for now.
+	#ifdef LCD_ENABLE
+	lcd_set_cursor(col, row);
+	for (char *it = string; *it; it++) {
+		lcd_write(*it);
+	}
+	#endif
+	//Party here
+}
+
+void print_uint8_LCD(uint8_t val, uint8_t col, uint8_t row){
+	#ifdef LCD_ENABLE
+	lcd_set_cursor(col, row);
+	lcd_write(val);
+	#endif
+	//Party here too
+}
 
 // Debug tool to print free memory in bytes at the called point. 
 // NOTE: Keep commented unless using. Part of this function always gets compiled in.

@@ -58,6 +58,8 @@
 #include "serial.h"
 #include "spindle_control.h"
 #include "stepper.h"
-#include "lcd.h"
+#ifdef LCD_ENABLE
+	#include "lcd.h"
+#endif
 
 #endif

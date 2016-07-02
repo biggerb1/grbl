@@ -1,7 +1,6 @@
 #include "grbl.h"
 
 #include <stdio.h>		//TO BE REMOVED, MUST FIND ALTERNATIVES
-#include <util/delay.h>
 
 void lcd_send(uint8_t value, uint8_t mode);
 void lcd_write_nibble(uint8_t nibble);
